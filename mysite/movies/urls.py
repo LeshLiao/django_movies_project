@@ -18,4 +18,6 @@ urlpatterns = [
     path("last_question/", views.last_question, name="last_question"),
 
     path("magic_missile/<str:my_name>/", views.magic_missile, name="magic_missile"),
+
+    path("position/<int:my_position>/", views.my_position, name="my_position"),
 ]

@@ -69,13 +69,10 @@ def submitedit(request, question_id):
     return render(request, "movies/index.html", context)
 
 def delete(request, question_id):
-
     q = Movie.objects.get(pk=question_id)
     q.delete()
-
     latest_question_list = Movie.objects.order_by("id")
     context = {"latest_question_list": latest_question_list}
-
     return render(request, "movies/index.html", context)
 
 def last_question(request):
@@ -85,4 +82,8 @@ def last_question(request):
 
 def magic_missile(request, my_name):
     context = {"my_name": my_name}
+    return render(request, "movies/magic_missile.html", context)
+
+def my_position(request, my_position):
+    context = {"my_position": my_position + 1000}
     return render(request, "movies/magic_missile.html", context)
