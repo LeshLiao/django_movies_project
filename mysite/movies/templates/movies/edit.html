@@ -1,0 +1,14 @@
+<h1>EDIT PAGE</h1>
+
+<head>
+  <!-- <link rel="stylesheet" href="styles.css"> -->
+</head>
+
+<form action="/movies/submitedit/{{ question.id }}/" method="POST">
+  {% csrf_token %}
+  <label>Movie Name: <input type="text" name="question_text" value="{{question.title}}" /></label><br />
+
+  <label>Rating: <input type="text" name="choice1" value="{{question.star}}" /></label><br />
+  <label>Description: <input name="choice2" value="{{question.desc}}"></textarea></label><br /><br />
+  <button>SUBMIT</button>
+</form>

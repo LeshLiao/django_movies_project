@@ -1,0 +1,15 @@
+<head>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<h3>createpoll.html</h3>
+<form action="/movies/submitpoll/" method="POST">
+  {% csrf_token %}
+  Movie Name:<br />
+  <input type="text" name="question_text" /><br />
+  Rating:<br />
+  <input type="text" name="choice1" /><br />
+  Description:<br />
+  <textarea name="choice2" cols="40" rows="5"></textarea><br /><br />
+  <button>SUBMIT</button>
+</form>

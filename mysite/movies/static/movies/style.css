@@ -1,0 +1,10 @@
+table {
+  border-collapse: collapse; /* Remove default table spacing */
+  width: 100%; /* Set table width to 100% */
+  margin: 0 auto; /* Center the table horizontally */
+}
+
+th, td {
+  padding: 10px; /* Add padding to cells */
+  border: 1px solid #ddd; /* Add borders to cells */
+}

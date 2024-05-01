@@ -1,0 +1,38 @@
+{% load static %}
+
+<head>
+  <link rel="stylesheet" href="{% static 'movies/style.css' %}">
+</head>
+
+<h1>Levi Liao</h1>
+
+<a href="/movies">
+  <h3>MOVIE HOME PAGE</h3>
+</a><br />
+<a href="/movies/createpoll">CREATE ONE</a><br /><br />
+<a href="/movies/last_question">THE LAST ONE</a><br /><br />
+
+{% if latest_question_list %}
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for question in latest_question_list %}
+    <tr>
+      <td>{{ question.id }}</td>
+      <td><a href="{% url 'movies:detail' question.id %}">{{ question.title }}</a></td>
+      <td><a href="{% url 'movies:edit' question.id %}">[EDIT]</a></td>
+      <td><a href="{% url 'movies:delete' question.id %}">[DELETE]</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>No polls are available.</p>
+{% endif %}
