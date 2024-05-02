@@ -14,7 +14,7 @@
 
 <form action="/movies/search/" method="POST">
   {% csrf_token %}
-  Keyword:<input type="text" name="keyword" size="50" />
+  Keyword:<input type="text" name="keyword" size="50" value="{{keyword}}" />
   <button>SEARCH</button>
 </form>
 <br />
