@@ -10,6 +10,7 @@ from django.http import Http404
 import random
 from django.utils import timezone
 from .models import Movie
+from django.db.models import Q
 
 def index(request):
     latest_question_list = Movie.objects.order_by("id")
@@ -87,3 +88,16 @@ def magic_missile(request, my_name):
 def my_position(request, my_position):
     context = {"my_position": my_position + 1000}
     return render(request, "movies/magic_missile.html", context)
+
+
+def search(request):
+    keyword = request.POST["keyword"]
+    print("keyword="+keyword)
+    if keyword:
+        search_result = Movie.objects.filter(Q(title__icontains=keyword))
+        print(search_result)
+    else:
+        search_result = Movie.objects.all()
+
+    context = {"keyword": keyword, "search_result": search_result}
+    return render(request, "movies/index.html", context)

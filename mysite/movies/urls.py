@@ -20,4 +20,8 @@ urlpatterns = [
     path("magic_missile/<str:my_name>/", views.magic_missile, name="magic_missile"),
 
     path("position/<int:my_position>/", views.my_position, name="my_position"),
+
+    path("search/", views.search, name="search"),
+    # path("search/<str:keyword>/", views.search, name="search"),
+
 ]

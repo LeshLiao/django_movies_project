@@ -6,9 +6,11 @@
 
 <form action="/movies/submitedit/{{ question.id }}/" method="POST">
   {% csrf_token %}
-  <label>Movie Name: <input type="text" name="question_text" value="{{question.title}}" /></label><br />
+  Movie Name:<br /><input type="text" name="question_text" value="{{question.title}}" size="50" /><br /><br />
 
-  <label>Rating: <input type="text" name="choice1" value="{{question.star}}" /></label><br />
-  <label>Description: <input name="choice2" value="{{question.desc}}"></textarea></label><br /><br />
+  Rating:<br /><input type="text" name="choice1" value="{{question.star}}" /><br /><br />
+
+  Description:<br /><textarea name="choice2" cols="50" rows="10">{{question.desc}}</textarea><br /><br />
+
   <button>SUBMIT</button>
 </form>

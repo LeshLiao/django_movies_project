@@ -12,6 +12,13 @@
 <a href="/movies/createpoll">CREATE ONE</a><br /><br />
 <a href="/movies/last_question">THE LAST ONE</a><br /><br />
 
+<form action="/movies/search/" method="POST">
+  {% csrf_token %}
+  Keyword:<input type="text" name="keyword" size="50" />
+  <button>SEARCH</button>
+</form>
+<br />
+
 {% if latest_question_list %}
 <table>
   <thead>
@@ -34,5 +41,29 @@
   </tbody>
 </table>
 {% else %}
-<p>No polls are available.</p>
+
+
+{% if search_result %}
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in search_result %}
+    <tr>
+      <td>{{ item.id }}</td>
+      <td>{{ item.title }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>No movie are available.</p>
+{% endif %}
+
+
+
 {% endif %}

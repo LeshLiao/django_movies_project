@@ -21,3 +21,9 @@ python manage.py runserver
 # deactivate
 
 deactivate
+
+# run unit test
+
+cd mysite/
+
+python manage.py test movies
