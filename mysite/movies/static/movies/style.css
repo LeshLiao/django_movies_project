@@ -5,6 +5,14 @@ table {
 }
 
 th, td {
-  padding: 10px; /* Add padding to cells */
-  border: 1px solid #ddd; /* Add borders to cells */
+  padding: 10px;
+  border: 1px solid #787878;
+}
+
+td a {
+  color: green;
+}
+
+body {
+  background: white url("images/background.png") no-repeat;
 }
