@@ -19,3 +19,6 @@ class Question(models.Model):
 
     def is_more_than_200_number(self):
         return len(self.question_text) > 200
+
+class Canvas(models.Model):
+    pixel_color = models.CharField(max_length=200)

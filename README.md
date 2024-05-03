@@ -27,3 +27,18 @@ deactivate
 cd mysite/
 
 python manage.py test movies
+
+# after create new model(EX: Canvas)
+
+cd mysite/
+
+python manage.py makemigrations movies
+
+python manage.py sqlmigrate movies 0003
+
+python manage.py migrate
+
+## Add these to movies/admin.py
+
+from .models import Canvas
+admin.site.register(Canvas)

@@ -9,12 +9,14 @@ from django.http import HttpResponse
 from django.http import Http404
 import random
 from django.utils import timezone
-from .models import Movie
+from .models import Canvas
 from django.db.models import Q
 
 def index(request):
     latest_question_list = Movie.objects.order_by("id")
-    context = {"latest_question_list": latest_question_list}
+
+    data_list = Canvas.objects.order_by("id")
+    context = {"latest_question_list": latest_question_list,"data_list": data_list}
     return render(request, "movies/index.html", context)
 
 def detail(request, question_id):
@@ -100,4 +102,16 @@ def search(request):
         search_result = Movie.objects.all()
 
     context = {"keyword": keyword, "search_result": search_result}
+    return render(request, "movies/index.html", context)
+
+
+def change_color(request):
+    if request.method == "POST":
+        block_id = request.POST["block_id"]
+        item = get_object_or_404(Canvas, pk=block_id)
+        item.pixel_color = request.POST["color_select"]
+        item.save()
+
+    data_list = Canvas.objects.order_by("id")
+    context = {"data_list": data_list}
     return render(request, "movies/index.html", context)

@@ -2,6 +2,48 @@
 
 <head>
   <link rel="stylesheet" href="{% static 'movies/style.css' %}">
+
+  <style>
+    .container {
+      border: 1px solid red;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      width: 260px;
+      /* Adjust gap between elements */
+    }
+
+    .block {
+      border: 1px solid #000;
+      width: 50px;
+      height: 50px;
+
+    }
+  </style>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const gridItems = document.querySelectorAll('.block');
+      const inputBlockId = document.querySelector('input[name="block_id"]');
+
+      gridItems.forEach(function (item) {
+        item.addEventListener('click', function () {
+          clear_focus();
+          const blockId = parseInt(item.dataset.id);
+          // alert('Clicked Block ID: ' + blockId);
+          inputBlockId.value = blockId;
+          item.style.border = '1px solid white';
+        });
+      });
+    });
+
+    function clear_focus() {
+      const gridItems = document.querySelectorAll('.block');
+      gridItems.forEach(function (item) {
+        item.style.border = '1px solid black';
+      });
+    }
+  </script>
+
 </head>
 
 <h1>Levi Liao</h1>
@@ -67,3 +109,28 @@
 
 
 {% endif %}
+
+
+
+<br />
+<div class="container">
+  {% for item in data_list %}
+  <div class="block" data-id="{{ item.id }}" style="background-color: {{ item.pixel_color }};"></div>
+  {% endfor %}
+</div>
+<br />
+<form action="/movies/change_color/" method="POST">
+  {% csrf_token %}
+
+  <select name="color_select" onchange="changeColor(this.value)">
+    <option value="#FF0000">Red</option>
+    <option value="#FFA500">Orange</option>
+    <option value="#FFFF00">Yellow</option>
+    <option value="#008000">Green</option>
+    <option value="#0000FF">Blue</option>
+    <option value="#00FFFF">Cyan</option>
+    <option value="#800080">Purple</option>
+  </select>
+  ID:<input type="text" name="block_id" size="5" value="{{block_id}}" />
+  <button>CHANGE</button>
+</form>
